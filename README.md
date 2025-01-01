@@ -21,3 +21,13 @@ Configuring Active Directory Within Azure
 6. Setup Remote Desktop for non-administrative users on Client-1
 7. Create additional users and attempt to log into client-1 with one of the users
 # Deployment and Configuration Steps
+
+Setup Resources in Azure
+
+Create the Domain Controller VM (Windows Server 2022) named “DC-1”:
+
+<img width="809" alt="Screen Shot 2024-12-31 at 9 36 16 PM" src="https://github.com/user-attachments/assets/9d229b64-d469-4721-8c30-dd1f8e22f009" />
+
+Create the Client VM (Windows 10) named “Client-1”. Use the same Resource Group and Vnet that was created in previous step:
+
+<img width="807" alt="Screen Shot 2024-12-31 at 9 43 26 PM" src="https://github.com/user-attachments/assets/03c24cc2-df44-4851-b7f3-90f54d9e64ae" />
