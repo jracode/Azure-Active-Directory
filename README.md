@@ -76,3 +76,65 @@ Promote as a Domain Controller:
 
 <img width="807" alt="Screen Shot 2024-12-31 at 10 05 33 PM" src="https://github.com/user-attachments/assets/7098fe11-ad83-4990-924b-de5ab5ead98a" />
 
+Setup a new forest as myactivedirectory.com (can be anything, just remember what it is - I ultimately did set it up as myadproject.com which you'll see in the next pic):
+
+<img width="808" alt="Screen Shot 2025-01-01 at 5 45 53 PM" src="https://github.com/user-attachments/assets/8145bc76-1742-4feb-9d70-41772208e325" />
+
+
+Restart and then log back into DC-1 as user: myadproject.com\labuser:
+
+
+<img width="805" alt="Screen Shot 2025-01-01 at 5 48 01 PM" src="https://github.com/user-attachments/assets/7c96f867-b055-4e86-a261-9f8e045234dd" />
+
+
+
+# Create an Admin and Normal User Account in AD
+
+In Active Directory Users and Computers (ADUC), create an Organizational Unit (OU) called “_EMPLOYEES” and another one called "_ADMINS":
+
+<img width="809" alt="Screen Shot 2025-01-01 at 5 50 05 PM" src="https://github.com/user-attachments/assets/25ae3fef-fc6c-4ffd-a819-195937628a5f" />
+
+<img width="807" alt="Screen Shot 2025-01-01 at 5 51 35 PM" src="https://github.com/user-attachments/assets/ea2fe5b8-8943-40e2-ac66-d33844b18175" />
+
+Create a new employee named “Jane Doe” with the username of “jane_admin”:
+
+<img width="792" alt="Screen Shot 2025-01-01 at 5 54 08 PM" src="https://github.com/user-attachments/assets/b2fa61b6-9d40-40e0-a7c7-627b5e2cd7a6" />
+
+Add jane_admin to the “Domain Admins” Security Group:
+
+<img width="800" alt="Screen Shot 2025-01-01 at 5 57 53 PM" src="https://github.com/user-attachments/assets/870c5be5-d40f-4747-ad30-fe80237ba093" />
+
+Log out/close the Remote Desktop connection to DC-1 and log back in as “myadproject.com\jane_admin”. Use jane_admin as your admin account from now on:
+
+<img width="801" alt="Screen Shot 2025-01-01 at 5 59 01 PM" src="https://github.com/user-attachments/assets/de14fba3-b978-46f1-9990-06a3b4dcbab7" />
+
+# Join Client-1 to your domain (myadproject.com)
+
+From the Azure Portal, set Client-1’s DNS settings to the DC’s Private IP address:
+
+<img width="811" alt="Screen Shot 2025-01-01 at 6 01 06 PM" src="https://github.com/user-attachments/assets/5a7bec3c-205f-44ed-85b6-00e19cd77759" />
+
+From the Azure Portal, restart Client-1.
+
+Login to Client-1 (Remote Desktop) as the original local admin (labuser) and join it to the domain (computer will restart):
+
+<img width="804" alt="Screen Shot 2025-01-01 at 6 04 25 PM" src="https://github.com/user-attachments/assets/0200cc73-bf33-4579-8e86-86876c8cacaa" />
+
+
+Login to the Domain Controller (Remote Desktop) and verify Client-1 shows up in Active Directory Users and Computers (ADUC) inside the “Computers” container on the root of the domain.
+
+Create a new OU named “_CLIENTS” and drag Client-1 into there:
+
+<img width="808" alt="Screen Shot 2025-01-01 at 6 06 12 PM" src="https://github.com/user-attachments/assets/45168214-377d-49b0-b451-146e449c2084" />
+
+# Setup Remote Desktop for non-administrative users on Client-1
+
+Log into Client-1 as mydomain.com\jane_admin and open system properties.
+
+Click “Remote Desktop”.
+
+Allow “domain users” access to remote desktop.
+
+You can now log into Client-1 as a normal, non-administrative user now.
+
+Normally you’d want to do this with Group Policy that allows you to change MANY systems at once (maybe a future lab):
