@@ -138,3 +138,38 @@ Allow “domain users” access to remote desktop.
 You can now log into Client-1 as a normal, non-administrative user now.
 
 Normally you’d want to do this with Group Policy that allows you to change MANY systems at once (maybe a future lab):
+
+
+<img width="624" alt="Screen Shot 2025-01-01 at 6 10 56 PM" src="https://github.com/user-attachments/assets/be77e072-daeb-452b-92a0-0472af4e6c10" />
+
+# Create a bunch of additional users and attempt to log into client-1 with one of the users
+
+Login to DC-1 as jane_admin
+
+Open PowerShell_ise as an administrator.
+
+Create a new File and paste the contents of this script (https://github.com/Xinloiazn/configure-ad/blob/main/adscript.ps1) into it:
+
+
+<img width="800" alt="Screen Shot 2025-01-01 at 6 13 21 PM" src="https://github.com/user-attachments/assets/368ef0d0-81aa-4b41-b58a-080cc61c053c" />
+
+Run the script and observe the accounts being created:
+
+<img width="811" alt="Screen Shot 2025-01-01 at 6 14 24 PM" src="https://github.com/user-attachments/assets/1620b7ce-cbc1-40f9-ae79-1d5433287d95" />
+
+When finished, open ADUC and observe the accounts in the appropriate OU and attempt to log into Client-1 with one of the accounts (take note of the password in the script):
+
+
+<img width="801" alt="Screen Shot 2025-01-01 at 6 15 29 PM" src="https://github.com/user-attachments/assets/6d5e317b-6463-45b1-bf0a-00460bbc8cbe" />
+
+<img width="807" alt="Screen Shot 2025-01-01 at 6 17 31 PM" src="https://github.com/user-attachments/assets/2d940620-80b2-435a-84bf-f7f4d1fd0e73" />
+
+
+<img width="768" alt="Screen Shot 2025-01-01 at 6 18 17 PM" src="https://github.com/user-attachments/assets/4e07946f-f413-4a46-a0bb-4580a95d808b" />
+
+
+I hope this tutorial helped you learn a little bit about network security protocols and observe traffic between virtual machines. This can be easily done on a PC or a Mac. Mac would just have an extra step to download the Remote Desktop App.
+
+Now that we're done, DON'T FORGET TO CLEAN UP YOUR AZURE ENVIRONMENT so that you don't incur unnecessary charges.
+
+Close your Remote Desktop connection, delete the Resource Group(s) created at the beginning of this tutorial, and verify Resource Group deletion.
